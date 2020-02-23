@@ -19,8 +19,5 @@ public class LockMouse : MonoBehaviour
         	Screen.lockCursor = false;
         }
 
-        if(Input.GetKeyDown(KeyCode.Escape)){
-        	Screen.fullScreen =! Screen.fullScreen; 
-        }
     }
 }

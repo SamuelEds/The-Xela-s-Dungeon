@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerCtrl : MonoBehaviour
 {
@@ -27,14 +28,25 @@ public class PlayerCtrl : MonoBehaviour
 	public  float 		noQuick;
 	private bool        puxando;
 
+	[Header("Controle de Cenas")]
+	public string ProximaCena;
+
+	[Header("Controle de áudios")]
+	public 	AudioClip clipPulando;
+	private AudioSource audio;
+	public  AudioClip footSteps;
+	public  AudioClip  Draging;
+
 	void Start()
 	{
 		playerRB = GetComponent<Rigidbody2D>();   
 		anim = GetComponent<Animator>(); 
 		playerTransform = GetComponent<Transform>();
+		audio = GetComponent<AudioSource>();
 	}
 
 	void FixedUpdate(){
+		HorizontalAxis = Input.GetAxisRaw("Horizontal");
 		groundCheck = Physics2D.OverlapCircle(groundCheckPosition.position,groundCheckRaio,isGround);
 
 		Physics2D.queriesStartInColliders = false;
@@ -74,7 +86,6 @@ public class PlayerCtrl : MonoBehaviour
 	void Update()
 	{
 		speedY = playerRB.velocity.y;
-		HorizontalAxis = Input.GetAxisRaw("Horizontal");
 		playerRB.velocity = new Vector2(HorizontalAxis * speed, speedY);   
 
 		if(HorizontalAxis > 0 || HorizontalAxis < 0){
@@ -91,6 +102,7 @@ public class PlayerCtrl : MonoBehaviour
 
 		if(Input.GetButtonDown("Jump") && groundCheck){
 			playerRB.AddForce(new Vector2(0,forcaPulo));
+			PlaySoundEffect();
 		}
 
 		anim.SetInteger("pulo",(int) speedY);
@@ -105,5 +117,26 @@ public class PlayerCtrl : MonoBehaviour
 
 			playerTransform.localScale = virado;	
 		}
+	}
+
+	void OnTriggerEnter2D(Collider2D col){ //Quando o Player chegar a Porta
+		if(col.gameObject.tag == "saida"){
+			SceneManager.LoadScene(ProximaCena);
+		}
+	}
+
+	void PlaySoundEffect(){
+		audio.clip = clipPulando;
+		audio.Play();
+	}
+
+	void footStep(){
+		audio.clip = footSteps;
+		audio.Play();
+	}
+
+	void PlayDrag(){ //Chamar na animacão de andando com a caixa
+		audio.clip = Draging;
+		audio.Play();
 	}
 }

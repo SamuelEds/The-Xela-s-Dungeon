@@ -6,6 +6,8 @@ TagManager:
   tags:
   - MoveObject
   - moveobect
+  - saida
+  - data
   layers:
   - Default
   - TransparentFX

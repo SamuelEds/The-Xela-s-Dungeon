@@ -209,6 +209,7 @@ MonoBehaviour:
   clipPulando: {fileID: 8300000, guid: de29a327bfcffd84bb643080468f43d0, type: 3}
   footSteps: {fileID: 8300000, guid: 37e593e42915c594598e40987b50be16, type: 3}
   Draging: {fileID: 8300000, guid: 6220f1abdd707474f88497a1346b63e4, type: 3}
+  grito: {fileID: 8300000, guid: 5caed738e68aec94d9fbf4af43bc2c53, type: 3}
 --- !u!50 &3695180376345181982
 Rigidbody2D:
   serializedVersion: 4

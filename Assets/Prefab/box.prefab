@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 2083339886346233640}
   - component: {fileID: 4858587724411255285}
   - component: {fileID: 7870402897172205526}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: box
-  m_TagString: Untagged
+  m_TagString: MoveObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,7 +154,7 @@ FixedJoint2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8429399689505946126}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   m_EnableCollision: 0
   m_ConnectedRigidBody: {fileID: 0}

@@ -32,10 +32,10 @@ public class PlayerCtrl : MonoBehaviour
 	public string ProximaCena;
 
 	[Header("Controle de áudios")]
-	public 	AudioClip clipPulando;
+	public 	AudioClip 	clipPulando;
 	private AudioSource audio;
-	public  AudioClip footSteps;
-	public  AudioClip  Draging;
+	public  AudioClip 	footSteps;
+	public  AudioClip  	Draging;
 
 	void Start()
 	{
@@ -54,7 +54,7 @@ public class PlayerCtrl : MonoBehaviour
 
 		if(hit.collider != null && Input.GetKeyDown(KeyCode.B) && hit.collider.gameObject.tag == "MoveObject"){
 			
-			playerRB.velocity = new Vector2(HorizontalAxis * speed, speedY * 0); 
+			 
 			//Fazer o Player não quicar
 			forcaPulo = noQuick;
 
@@ -107,6 +107,10 @@ public class PlayerCtrl : MonoBehaviour
 
 		anim.SetInteger("pulo",(int) speedY);
 
+		if(Input.GetKeyDown(KeyCode.G)){
+			SceneManager.LoadScene("Menu");
+		}
+
 	}
 
 	void virar(){
@@ -122,6 +126,8 @@ public class PlayerCtrl : MonoBehaviour
 	void OnTriggerEnter2D(Collider2D col){ //Quando o Player chegar a Porta
 		if(col.gameObject.tag == "saida"){
 			SceneManager.LoadScene(ProximaCena);
+		}else if(col.gameObject.tag == "morte"){
+			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 		}
 	}
 

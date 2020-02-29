@@ -7,7 +7,9 @@ TagManager:
   - MoveObject
   - moveobect
   - saida
-  - data
+  - SoundAbismo
+  - morte
+  - alavanca
   layers:
   - Default
   - TransparentFX

@@ -93,6 +93,9 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: correndo
     m_EventTreshold: 0
+  - m_ConditionMode: 2
+    m_ConditionEvent: pulou
+    m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -4977618534734597393}
   m_Solo: 0
@@ -117,6 +120,9 @@ AnimatorStateTransition:
   m_Conditions:
   - m_ConditionMode: 3
     m_ConditionEvent: pulo
+    m_EventTreshold: 0
+  - m_ConditionMode: 1
+    m_ConditionEvent: pulou
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1691708393549277794}
@@ -206,6 +212,12 @@ AnimatorController:
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
   - m_Name: puxando
+    m_Type: 4
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: pulou
     m_Type: 4
     m_DefaultFloat: 0
     m_DefaultInt: 0

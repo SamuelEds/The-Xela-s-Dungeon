@@ -20,13 +20,15 @@ public class PlayerCtrl : MonoBehaviour
 	public 	float 	 	groundCheckRaio = 0.2f;
 	public 	LayerMask  	isGround;
 	public 	float 	 	forcaPulo;
+	public  bool 		pulou;
 
 	[Header("Variáveis dque faz o Player puxar")]
-	public float distance = 1f;
+	public 	float 		distance = 1f;
 	public 	LayerMask 	boxMask;
 	private GameObject 	box;
 	public  float 		noQuick;
 	private bool        puxando;
+	public  Rigidbody2D caixa;
 
 	[Header("Controle de Cenas")]
 	public string ProximaCena;
@@ -43,9 +45,16 @@ public class PlayerCtrl : MonoBehaviour
 		anim = GetComponent<Animator>(); 
 		playerTransform = GetComponent<Transform>();
 		audio = GetComponent<AudioSource>();
+		pulou = true;
+
+		caixa.constraints = RigidbodyConstraints2D.FreezeRotation;
+		caixa.constraints = ~RigidbodyConstraints2D.FreezePositionY;
+		
 	}
 
 	void FixedUpdate(){
+
+
 		HorizontalAxis = Input.GetAxisRaw("Horizontal");
 		groundCheck = Physics2D.OverlapCircle(groundCheckPosition.position,groundCheckRaio,isGround);
 
@@ -54,12 +63,17 @@ public class PlayerCtrl : MonoBehaviour
 
 		if(hit.collider != null && Input.GetKeyDown(KeyCode.B) && hit.collider.gameObject.tag == "MoveObject"){
 			
-			 
+
 			//Fazer o Player não quicar
 			forcaPulo = noQuick;
 
 			anim.SetBool("puxando",true);
 			anim.SetBool("correndo",false);
+
+			pulou = false;
+
+			caixa.constraints = RigidbodyConstraints2D.None;
+			caixa.constraints = RigidbodyConstraints2D.FreezeRotation;
 
 			box = hit.collider.gameObject;
 			box.GetComponent<FixedJoint2D>().enabled = true;
@@ -70,16 +84,18 @@ public class PlayerCtrl : MonoBehaviour
 			puxando = true;
 		}else if(Input.GetKeyUp(KeyCode.B)){
 
+			caixa.constraints = ~RigidbodyConstraints2D.FreezePositionY;
+
 			box.GetComponent<FixedJoint2D>().enabled = false;
 			box.GetComponent<boxpull> ().beingPushed = false;
-			forcaPulo = 100000f;
+			forcaPulo = 440000f;
 			anim.SetBool("puxando",false);
 			anim.SetBool("correndo",true);
 
 			puxando = false;
+			pulou = true;
 			
 		}
-
 	}
 
     // Update is called once per frame
@@ -102,14 +118,24 @@ public class PlayerCtrl : MonoBehaviour
 
 		if(Input.GetButtonDown("Jump") && groundCheck){
 			playerRB.AddForce(new Vector2(0,forcaPulo));
-			PlaySoundEffect();
+			if(pulou){
+				PlaySoundEffect();	
+			}
+			
 		}
 
-		anim.SetInteger("pulo",(int) speedY);
+		if(groundCheck){
+			anim.SetBool("pulou",false);
+			anim.SetInteger("pulo",(int) 0f);
+		}else{
+			anim.SetBool("pulou",true);
+		}
 
 		if(Input.GetKeyDown(KeyCode.G)){
 			SceneManager.LoadScene("Menu");
 		}
+
+		anim.SetInteger("pulo",(int) speedY);
 
 	}
 
@@ -126,20 +152,20 @@ public class PlayerCtrl : MonoBehaviour
 	void OnTriggerEnter2D(Collider2D col){ //Quando o Player chegar a Porta
 		if(col.gameObject.tag == "saida"){
 			SceneManager.LoadScene(ProximaCena);
-		}else if(col.gameObject.tag == "morte"){
-			SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+			}else if(col.gameObject.tag == "morte"){
+				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+			}
 		}
-	}
 
-	void PlaySoundEffect(){
-		audio.clip = clipPulando;
-		audio.Play();
-	}
+		void PlaySoundEffect(){
+			audio.clip = clipPulando;
+			audio.Play();
+		}
 
-	void footStep(){
-		audio.clip = footSteps;
-		audio.Play();
-	}
+		void footStep(){
+			audio.clip = footSteps;
+			audio.Play();
+		}
 
 	void PlayDrag(){ //Chamar na animacão de andando com a caixa
 		audio.clip = Draging;

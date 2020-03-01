@@ -22,11 +22,14 @@ public class Lever : MonoBehaviour
 				Tocou = true;
 			}
 		}else{
-			alavanca.SetBool("clicado",false);
-			Plataforma1.SetBool("ativar",false);
-			Plataforma2.SetBool("ativar2",false);
-			Tocou = false;
+			if(col.gameObject.tag == "alavanca"){
+				alavanca.SetBool("clicado",false);
+				Plataforma1.SetBool("ativar",false);
+				Plataforma2.SetBool("ativar2",false);
+				Tocou = false;
+			}
 		}
 
 	}
+
 }

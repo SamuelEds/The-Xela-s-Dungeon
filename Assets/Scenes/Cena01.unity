@@ -2563,7 +2563,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1807735187
 Transform:
   m_ObjectHideFlags: 0
@@ -2731,6 +2731,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1891365355}
   m_CullTransparentMesh: 0
+--- !u!50 &1941012493 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 2083339886346233640, guid: 6531c54a344b36c499cb07a5617c8272,
+    type: 3}
+  m_PrefabInstance: {fileID: 4069572803326757165}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1946690531
 GameObject:
   m_ObjectHideFlags: 0
@@ -3238,6 +3244,26 @@ PrefabInstance:
       propertyPath: ProximaCena
       value: Cena02
       objectReference: {fileID: 0}
+    - target: {fileID: 3695180376345181981, guid: fc7e67e03c4a15340b1b690ccdbbeb0c,
+        type: 3}
+      propertyPath: distance
+      value: 0.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3695180376345181981, guid: fc7e67e03c4a15340b1b690ccdbbeb0c,
+        type: 3}
+      propertyPath: forcaPulo
+      value: 440000
+      objectReference: {fileID: 0}
+    - target: {fileID: 3695180376345181981, guid: fc7e67e03c4a15340b1b690ccdbbeb0c,
+        type: 3}
+      propertyPath: caixa
+      value: 
+      objectReference: {fileID: 1941012493}
+    - target: {fileID: 3695180376345181982, guid: fc7e67e03c4a15340b1b690ccdbbeb0c,
+        type: 3}
+      propertyPath: m_Mass
+      value: 400
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fc7e67e03c4a15340b1b690ccdbbeb0c, type: 3}
 --- !u!1001 &4069572803326757165
@@ -3306,11 +3332,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4858587724411255285, guid: 6531c54a344b36c499cb07a5617c8272,
-        type: 3}
-      propertyPath: defaultMass
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 7870402897172205526, guid: 6531c54a344b36c499cb07a5617c8272,
         type: 3}

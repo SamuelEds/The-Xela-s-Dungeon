@@ -145,8 +145,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   beingPushed: 0
   mode: 0
-  imovableMass: 80
-  defaultMass: 1
+  imovableMass: 120
+  defaultMass: 20
 --- !u!255 &7870402897172205526
 FixedJoint2D:
   m_ObjectHideFlags: 0

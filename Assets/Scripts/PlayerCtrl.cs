@@ -12,7 +12,7 @@ public class PlayerCtrl : MonoBehaviour
 	private Animator    anim;
 	private float		speedY;
 	public  bool 		lookLeft;
-	private  Transform   playerTransform;
+	private Transform  playerTransform;
 
 	[Header("Variáveis de Pulo")]
 	public 	bool 		groundCheck;
@@ -22,7 +22,7 @@ public class PlayerCtrl : MonoBehaviour
 	public 	float 	 	forcaPulo;
 	public  bool 		pulou;
 
-	[Header("Variáveis dque faz o Player puxar")]
+	[Header("Variáveis que faz o Player puxar")]
 	public 	float 		distance = 1f;
 	public 	LayerMask 	boxMask;
 	private GameObject 	box;
@@ -39,6 +39,9 @@ public class PlayerCtrl : MonoBehaviour
 	public  AudioClip 	footSteps;
 	public  AudioClip  	Draging;
 
+	[Header("Áudio para movimentação da caixa")]
+	public	AudioClip 	arrastando;
+
 	void Start()
 	{
 		playerRB = GetComponent<Rigidbody2D>();   
@@ -49,26 +52,33 @@ public class PlayerCtrl : MonoBehaviour
 
 		caixa.constraints = RigidbodyConstraints2D.FreezeRotation;
 		caixa.constraints = ~RigidbodyConstraints2D.FreezePositionY;
+
+
 		
 	}
 
 	void FixedUpdate(){
 
+		float speedX = playerRB.velocity.x;
 
 		HorizontalAxis = Input.GetAxisRaw("Horizontal");
+		
 		groundCheck = Physics2D.OverlapCircle(groundCheckPosition.position,groundCheckRaio,isGround);
 
 		Physics2D.queriesStartInColliders = false;
 		RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right * transform.localScale.x, distance,boxMask);
 
 		if(hit.collider != null && Input.GetKeyDown(KeyCode.B) && hit.collider.gameObject.tag == "MoveObject"){
-			
 
 			//Fazer o Player não quicar
 			forcaPulo = noQuick;
 
 			anim.SetBool("puxando",true);
-			anim.SetBool("correndo",false);
+
+			puxando = true;
+			
+			anim.SetBool("terminouDePuxar",true);
+			
 
 			pulou = false;
 
@@ -81,7 +91,6 @@ public class PlayerCtrl : MonoBehaviour
 			box.GetComponent<FixedJoint2D>().connectedBody = this.GetComponent<Rigidbody2D>();
 
 			
-			puxando = true;
 		}else if(Input.GetKeyUp(KeyCode.B)){
 
 			caixa.constraints = ~RigidbodyConstraints2D.FreezePositionY;
@@ -89,26 +98,48 @@ public class PlayerCtrl : MonoBehaviour
 			box.GetComponent<FixedJoint2D>().enabled = false;
 			box.GetComponent<boxpull> ().beingPushed = false;
 			forcaPulo = 440000f;
+			
+
+			anim.SetBool("terminouDePuxar",false);
 			anim.SetBool("puxando",false);
-			anim.SetBool("correndo",true);
+			
 
 			puxando = false;
 			pulou = true;
 			
 		}
+
+		if((puxando && speedX > 0) || (puxando && speedX < 0)){
+
+			
+			anim.SetInteger("andando_e_puxando", (int) speedX);
+
+		}else if(puxando && speedX == 0){
+
+			anim.SetInteger("andando_e_puxando", 0);
+			anim.SetBool("puxando",true);
+
+		}else if(!puxando){
+			anim.SetBool("puxando",false);
+		}
+		
+		
 	}
 
     // Update is called once per frame
 	void Update()
 	{
 		speedY = playerRB.velocity.y;
+		
 		playerRB.velocity = new Vector2(HorizontalAxis * speed, speedY);   
 
-		if(HorizontalAxis > 0 || HorizontalAxis < 0){
+		if(HorizontalAxis > 0 || HorizontalAxis < 0 && !puxando){
 			anim.SetBool("correndo",true);
 		}else{
 			anim.SetBool("correndo",false);
 		}
+
+		
 
 		if(HorizontalAxis > 0 && lookLeft){
 			virar();
@@ -169,6 +200,11 @@ public class PlayerCtrl : MonoBehaviour
 
 	void PlayDrag(){ //Chamar na animacão de andando com a caixa
 		audio.clip = Draging;
+		audio.Play();
+	}
+
+	void PlayArrastando(){
+		audio.clip = arrastando;
 		audio.Play();
 	}
 }

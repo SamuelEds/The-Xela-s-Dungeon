@@ -3092,12 +3092,12 @@ PrefabInstance:
     - target: {fileID: 417686725805108517, guid: c19b2b454ead08646a172df1d78a26b5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 12.147
+      value: 13.27
       objectReference: {fileID: 0}
     - target: {fileID: 417686725805108517, guid: c19b2b454ead08646a172df1d78a26b5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.59
+      value: 1.02
       objectReference: {fileID: 0}
     - target: {fileID: 417686725805108517, guid: c19b2b454ead08646a172df1d78a26b5,
         type: 3}
@@ -3148,6 +3148,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Porta
+      objectReference: {fileID: 0}
+    - target: {fileID: 417686725805108518, guid: c19b2b454ead08646a172df1d78a26b5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 417686725805108539, guid: c19b2b454ead08646a172df1d78a26b5,
         type: 3}
@@ -3259,6 +3264,11 @@ PrefabInstance:
       propertyPath: caixa
       value: 
       objectReference: {fileID: 1941012493}
+    - target: {fileID: 3695180376345181981, guid: fc7e67e03c4a15340b1b690ccdbbeb0c,
+        type: 3}
+      propertyPath: arrastando
+      value: 
+      objectReference: {fileID: 8300000, guid: 76fa6dbf2bc04604aaba3bb9d5ee011e, type: 3}
     - target: {fileID: 3695180376345181982, guid: fc7e67e03c4a15340b1b690ccdbbeb0c,
         type: 3}
       propertyPath: m_Mass
@@ -3333,6 +3343,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4858587724411255285, guid: 6531c54a344b36c499cb07a5617c8272,
+        type: 3}
+      propertyPath: volume
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4858587724411255285, guid: 6531c54a344b36c499cb07a5617c8272,
+        type: 3}
+      propertyPath: arrastando
+      value: 
+      objectReference: {fileID: 8300000, guid: 76fa6dbf2bc04604aaba3bb9d5ee011e, type: 3}
+    - target: {fileID: 5419105013328948706, guid: 6531c54a344b36c499cb07a5617c8272,
+        type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 6220f1abdd707474f88497a1346b63e4, type: 3}
     - target: {fileID: 7870402897172205526, guid: 6531c54a344b36c499cb07a5617c8272,
         type: 3}
       propertyPath: m_ConnectedAnchor.x

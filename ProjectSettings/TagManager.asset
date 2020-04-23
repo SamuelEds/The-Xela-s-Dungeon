@@ -10,6 +10,7 @@ TagManager:
   - SoundAbismo
   - morte
   - alavanca
+  - MovingPlataform
   layers:
   - Default
   - TransparentFX

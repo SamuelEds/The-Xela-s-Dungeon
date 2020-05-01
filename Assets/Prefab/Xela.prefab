@@ -192,7 +192,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HorizontalAxis: 0
   speed: 5
+  speedY: 0
   lookLeft: 0
+  speedX: 0
   groundCheck: 0
   groundCheckPosition: {fileID: 3695180375116127439}
   groundCheckRaio: 0.2
@@ -206,11 +208,14 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   noQuick: 0
+  puxando: 0
   caixa: {fileID: 0}
-  ProximaCena: 
+  ProximaCenaDepoisDoLoading: 
+  CenaDeLoading: 
   clipPulando: {fileID: 8300000, guid: de29a327bfcffd84bb643080468f43d0, type: 3}
   footSteps: {fileID: 8300000, guid: bd87809ffe125b144bb552db489d56e8, type: 3}
   Draging: {fileID: 8300000, guid: 6220f1abdd707474f88497a1346b63e4, type: 3}
+  arrastando: {fileID: 0}
 --- !u!50 &3695180376345181982
 Rigidbody2D:
   serializedVersion: 4

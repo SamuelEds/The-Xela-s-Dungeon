@@ -28,11 +28,12 @@ public class PlayerCtrl : MonoBehaviour
 	public 	LayerMask 	boxMask;
 	private GameObject 	box;
 	public  float 		noQuick;
-	private bool        puxando;
+	public bool        puxando;
 	public  Rigidbody2D caixa;
 
 	[Header("Controle de Cenas")]
-	public string ProximaCena;
+	public string ProximaCenaDepoisDoLoading;
+	public string CenaDeLoading;
 
 	[Header("Controle de áudios")]
 	public 	AudioClip 	clipPulando;
@@ -126,23 +127,31 @@ public class PlayerCtrl : MonoBehaviour
     // Update is called once per frame
 	void Update()
 	{
-		if((puxando && speedX > 0) || (puxando && speedX < 0)){
+		if(puxando && !lookLeft && HorizontalAxis > 0){
+
+
+			//Debug.Log("Não está olhando para a esquerda e está empurrando para direita");
+			anim.SetInteger("andando_e_puxando", (int) HorizontalAxis); //Recebe um valor 1 no animator
 
 			
-			anim.SetInteger("andando_e_puxando", (int) speedX);
 
-		}else if(puxando && speedX == 0){
+		}else if(puxando && !lookLeft && HorizontalAxis < 0){
 
+			//Debug.Log("Não está olhando para a esquerda e está puxando para esquerda");
+			anim.SetInteger("andando_e_puxando", (int) HorizontalAxis); //Recebe um valor -1 no animator
+
+		}else if(puxando && lookLeft && HorizontalAxis < 0){
+
+			//Debug.Log("Está olhando para a esquerda e está empurrando para a esquerda");
+			anim.SetInteger("andando_e_puxando", 1); //Recebe um valor 1 no animator
+
+		}else if(puxando && lookLeft && HorizontalAxis > 0){
+
+			//Debug.Log("Está olhando para a esquerda e está puxando para direita");
+			anim.SetInteger("andando_e_puxando", -1); //Recebe um valor -1 no animator
+
+		}else{
 			anim.SetInteger("andando_e_puxando", 0);
-			anim.SetBool("puxando",true);
-
-		}else if(!puxando){
-
-			anim.SetInteger("andando_e_puxando", 0);
-
-		}else if(!puxando && speedX != 0){
-			anim.SetInteger("andando_e_puxando", 0);
-			anim.SetBool("puxando",false);
 		}
 
 		speedY = playerRB.velocity.y;
@@ -163,7 +172,7 @@ public class PlayerCtrl : MonoBehaviour
 			virar();
 		}
 
-		if(Input.GetButtonDown("Jump") && groundCheck){
+		if(Input.GetButtonDown("Jump") && groundCheck && Time.timeScale == 1){
 			playerRB.AddForce(new Vector2(0,forcaPulo));
 			if(pulou){
 				PlaySoundEffect();	
@@ -179,8 +188,10 @@ public class PlayerCtrl : MonoBehaviour
 		}
 
 		if(Input.GetKeyDown(KeyCode.G)){
+			PlayerPrefs.SetString("proxima_cena","Cena01");
 			SceneManager.LoadScene("Menu");
 		}
+		
 
 		anim.SetInteger("pulo",(int) speedY);
 
@@ -197,10 +208,15 @@ public class PlayerCtrl : MonoBehaviour
 	}
 
 	void OnTriggerEnter2D(Collider2D col){ //Quando o Player chegar a Porta
-		if(col.gameObject.tag == "saida"){
-			SceneManager.LoadScene(ProximaCena);
-			}else if(col.gameObject.tag == "morte"){
-				SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+			if(col.gameObject.tag == "saida"){
+				
+
+				if(CenaDeLoading == ""){
+					SceneManager.LoadScene(ProximaCenaDepoisDoLoading); 
+				}else{
+					PlayerPrefs.SetString("proxima_cena", ProximaCenaDepoisDoLoading); //Vai declarar a cena na tela de Loading
+					SceneManager.LoadScene(CenaDeLoading); 
+				}
 			}
 		}
 

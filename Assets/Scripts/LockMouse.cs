@@ -4,19 +4,14 @@ using UnityEngine;
 
 public class LockMouse : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
+    
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKey(KeyCode.Mouse0)){
-        	Screen.lockCursor = true;
+        if(Time.timeScale == 1){
+            //Cursor.visible = false;
         }else{
-        	Screen.lockCursor = false;
+            //Cursor.visible = true;
         }
 
     }

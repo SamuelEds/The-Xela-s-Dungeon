@@ -11,6 +11,7 @@ TagManager:
   - morte
   - alavanca
   - MovingPlataform
+  - espinhos
   layers:
   - Default
   - TransparentFX

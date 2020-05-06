@@ -18,14 +18,16 @@ public class LevelManager : MonoBehaviour
     void OnGUI()
     {
         //Delete all of the PlayerPrefs settings by pressing this Button
-        if (GUI.Button(new Rect(100, 200, 200, 60), "Delete")) //Vai fazer um botão na tela para deletar todos os saves
+        /*if (GUI.Button(new Rect(100, 200, 200, 60), "Delete")) //Vai fazer um botão na tela para deletar todos os saves
         {
             PlayerPrefs.DeleteAll();
-        }
+        }*/
     }
 
     public void LoadScene(string scene){
-    	SceneManager.LoadScene(scene);
+    	PlayerPrefs.SetString("proxima_cena","Cena01");
+        SceneManager.LoadScene(scene);
+        
     }
 
     public void SairJogo(){

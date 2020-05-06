@@ -23,14 +23,16 @@ public class Loading_cena_a_cena : MonoBehaviour
     private int progresso = 0;
 
     void Start(){
-        if(PlayerPrefs.HasKey("proxima_cena")){
+        if(SceneManager.GetActiveScene().name == "Menu"){
+            
+            Debug.Log("Carregar Fase 1");
+            StartCoroutine(CenaDeCarregamento(CenaACarregar));
+
+        }else if(PlayerPrefs.HasKey("proxima_cena")){
+            Debug.Log("Carregar próxima cena");
             string ProximaCena = PlayerPrefs.GetString("proxima_cena");
             StartCoroutine(CenaDeCarregamento(ProximaCena));
-        }else{
-            StartCoroutine(CenaDeCarregamento(CenaACarregar));
         }
-        
-        
     }
 
     IEnumerator CenaDeCarregamento(string cena){

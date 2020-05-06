@@ -12,10 +12,14 @@ public class Lever : MonoBehaviour
 
 	[Header("Verificar se o Player tocou na alavanca novamente")]
 	public bool Tocou;
+	
+	[Header("Som da alavanca")]
+	public AudioSource alavancaSound;
 
 	void OnTriggerEnter2D(Collider2D col){
 		if(!Tocou){
 			if(col.gameObject.tag == "alavanca"){
+				alavancaSound.Play();
 				alavanca.SetBool("clicado",true);
 				Plataforma1.SetBool("ativar",true);
 				Plataforma2.SetBool("ativar2",true);
@@ -23,6 +27,7 @@ public class Lever : MonoBehaviour
 			}
 		}else{
 			if(col.gameObject.tag == "alavanca"){
+				alavancaSound.Play();
 				alavanca.SetBool("clicado",false);
 				Plataforma1.SetBool("ativar",false);
 				Plataforma2.SetBool("ativar2",false);

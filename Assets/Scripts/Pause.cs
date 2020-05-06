@@ -22,11 +22,15 @@ public class Pause : MonoBehaviour
     //public  Font    FontTextoDropdown;
     //public  TextMeshProUGUI  Output;
 
+    
+    
+    
     void Start()
     {
         //============SETAR PAINÉIS============\\
         PainelPause.SetActive(false);
         Time.timeScale = 1;
+        AudioListener.pause = false;
 
         //============SETAR VOLUME AO INICIAR A CENA============\\
         if (PlayerPrefs.HasKey("Volume"))
@@ -40,6 +44,7 @@ public class Pause : MonoBehaviour
         {
             PlayerPrefs.SetFloat("Volume", 1);
             BarraVolume.value = 1;
+            
         }
 
         BarraVolume.maxValue = 1;
@@ -146,6 +151,7 @@ public class Pause : MonoBehaviour
 
     public void VoltarMenu()
     {
+        
         SceneManager.LoadScene("Menu");
     }
 

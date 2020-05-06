@@ -281,7 +281,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &109485998
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,6 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 688c9f32425570944a781ea4a99c0377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VerificarMenu: 
 --- !u!4 &109486000
 Transform:
   m_ObjectHideFlags: 0
@@ -719,8 +720,6 @@ MonoBehaviour:
   Volume: 0
   PorcentagemVolume: {fileID: 964219408}
   Qualidades: {fileID: 289986918}
-  FontTextoDropdown: {fileID: 12800000, guid: a1bb999e950c8794da51c0669bfa3f6e, type: 3}
-  Output: {fileID: 0}
 --- !u!1001 &357349160
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1250,6 +1249,12 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &639898105 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5419105013328948706, guid: 6531c54a344b36c499cb07a5617c8272,
+    type: 3}
+  m_PrefabInstance: {fileID: 4069572803326757165}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &672575316
 GameObject:
   m_ObjectHideFlags: 0
@@ -3610,6 +3615,11 @@ PrefabInstance:
       propertyPath: CenaDeLoading
       value: 
       objectReference: {fileID: 0}
+    - target: {fileID: 3695180376345181981, guid: fc7e67e03c4a15340b1b690ccdbbeb0c,
+        type: 3}
+      propertyPath: Caixa
+      value: 
+      objectReference: {fileID: 639898105}
     - target: {fileID: 3695180376345181982, guid: fc7e67e03c4a15340b1b690ccdbbeb0c,
         type: 3}
       propertyPath: m_Mass
@@ -3704,7 +3714,22 @@ PrefabInstance:
         type: 3}
       propertyPath: m_audioClip
       value: 
-      objectReference: {fileID: 8300000, guid: 6220f1abdd707474f88497a1346b63e4, type: 3}
+      objectReference: {fileID: 8300000, guid: 3a8066a24cf6f36458d8bdc33b658c6c, type: 3}
+    - target: {fileID: 5419105013328948706, guid: 6531c54a344b36c499cb07a5617c8272,
+        type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5419105013328948706, guid: 6531c54a344b36c499cb07a5617c8272,
+        type: 3}
+      propertyPath: m_Volume
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5419105013328948706, guid: 6531c54a344b36c499cb07a5617c8272,
+        type: 3}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7870402897172205526, guid: 6531c54a344b36c499cb07a5617c8272,
         type: 3}
       propertyPath: m_ConnectedAnchor.x

@@ -77,6 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b54aa47b4081564aa55f1836ca8a4c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AtivarPlayer: {fileID: 0}
 --- !u!114 &2965183835773494552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -89,6 +90,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 688c9f32425570944a781ea4a99c0377, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  VerificarMenu: 
 --- !u!114 &2965183835773494553
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -116,7 +118,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2965183835804173271}
-  - component: {fileID: 2965183835804173270}
+  - component: {fileID: 8939256468660895159}
+  - component: {fileID: 6846537619147670092}
   m_Layer: 0
   m_Name: SoundBackground
   m_TagString: Untagged
@@ -138,7 +141,20 @@ Transform:
   m_Father: {fileID: 2965183835773494554}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &2965183835804173270
+--- !u!114 &8939256468660895159
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2965183835804173268}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac4691233043ee142b84ae94fff12317, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  NotDestroy: {fileID: 0}
+--- !u!82 &6846537619147670092
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,8 +166,8 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: eb1577a54a1e7d54199ebd8520dd1b5c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.43
-  m_Pitch: 0.7
+  m_Volume: 1
+  m_Pitch: 1
   Loop: 0
   Mute: 0
   Spatialize: 0

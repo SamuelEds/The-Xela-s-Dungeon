@@ -39,7 +39,7 @@ public class PlayerCtrl : MonoBehaviour
 	public 	AudioClip 	clipPulando;
 	private AudioSource audio;
 	public  AudioClip 	footSteps;
-	public  AudioClip  	Draging;
+	public  AudioSource  Caixa;
 
 	[Header("Áudio para movimentação da caixa")]
 	public	AudioClip 	arrastando;
@@ -86,6 +86,7 @@ public class PlayerCtrl : MonoBehaviour
 
 				anim.SetBool("terminouDePuxar",true);
 
+				
 
 				pulou = false;
 
@@ -117,6 +118,14 @@ public class PlayerCtrl : MonoBehaviour
 				pulou = true;
 
 			}
+
+			/*if(puxando && HorizontalAxis != 0){
+				Debug.Log("Arrastando");
+				Caixa.volume = 1;
+			}else{
+				Debug.Log("Parrou de arrastar");
+				Caixa.volume = 0;
+			}*/
 		}
 
 		
@@ -187,10 +196,10 @@ public class PlayerCtrl : MonoBehaviour
 			anim.SetBool("pulou",true);
 		}
 
-		if(Input.GetKeyDown(KeyCode.G)){
+		/*if(Input.GetKeyDown(KeyCode.G)){
 			PlayerPrefs.SetString("proxima_cena","Cena01");
 			SceneManager.LoadScene("Menu");
-		}
+		}*/
 		
 
 		anim.SetInteger("pulo",(int) speedY);
@@ -232,11 +241,6 @@ public class PlayerCtrl : MonoBehaviour
 				audio.Play();
 			}
 		}
-
-	void PlayDrag(){ //Chamar na animacão de andando com a caixa
-		audio.clip = Draging;
-		audio.Play();
-	}
 
 	void PlayArrastando(){
 		audio.clip = arrastando;
